@@ -1,6 +1,6 @@
 # docker-eclipse
 
-Eclipse v4.4.1 in a Docker container
+Eclipse v4.2.2 in a Docker container
 
 ## Requirements
 
@@ -17,8 +17,8 @@ within the container:
 
 ```sh
 # The image size is currently 1.131 GB, so go grab a coffee while Docker downloads it
-docker pull fgrehm/eclipse:v4.4.1
-L=$HOME/bin/eclipse && curl -sL https://github.com/fgrehm/docker-eclipse/raw/master/eclipse > $L && chmod +x $L
+docker pull mvberg/eclipse:v4.2.2
+L=$HOME/bin/eclipse && curl -sL https://github.com/mvberg/docker-eclipse/raw/master/eclipse > $L && chmod +x $L
 cd /path/to/java/project
 eclipse
 ```
@@ -32,16 +32,53 @@ Eclipse plugins are kept on `$HOME/.eclipse` inside the container, so if you
 want to keep them around after you close it, you'll need to share it with your
 host.
 
-For example:
+## Windows
+
+Install xming for X11
+
+https://github.com/moby/moby/issues/8710#issuecomment-135109677
+
+### OSX
+
+use socat to forward X11
+
+```
+brew install socat
+socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
+```
+
+## Set $DISPLAY to your local IP
+
+```
+SET $DISPLAY=10.222.4.184:0
+```
+
+Running Example:
 
 ```sh
-mkdir -p .eclipse-docker
+mkdir -p .eclipse-docker # location for persistent storage
 docker run -ti --rm \
-           -e DISPLAY=$DISPLAY \
+           -e DISPLAY=$DISPLAY \ # use IP if this fails, eg 10.222.4.184:0
            -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v `pwd`/.eclipse-docker:/home/developer \
-           -v `pwd`:/workspace \
-           fgrehm/eclipse:v4.4.1
+           -v `pwd`/.eclipse-docker:/home/developer \ # eclipse plugin metadata
+           -v `pwd`/git:/home/developer/git \ # git repos
+           -v `pwd`/.m2:/home/.m2 # maven repo and user settings
+           mvberg/eclipse:v4.2.2
+```
+
+## Windows paths need to be absolute
+
+```sh
+docker run -ti --rm -e DISPLAY=10.222.4.184:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v c:/Users/mvber/.eclipse-docker:/home/developer -v c:/Users/mvber/git:/home/developer/git mvberg/eclipse:v4.2.2
+```
+
+
+## Copy Maven User Settings
+
+On your local machine
+
+```
+~/eclipse-docker/.m2/settings.xml
 ```
 
 ## Help! I started the container but I don't see the Eclipse screen

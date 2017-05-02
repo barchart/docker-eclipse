@@ -1,12 +1,12 @@
 FROM ubuntu:14.04
-MAINTAINER Fabio Rehm "fgrehm@gmail.com"
+MAINTAINER Fabio Rehm "mike@barchart.com"
 
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
     apt-get update && apt-get install -y software-properties-common && \
     add-apt-repository ppa:webupd8team/java -y && \
     apt-get update && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer libxext-dev libxrender-dev libxtst-dev && \
+    echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
+    apt-get install -y oracle-java7-installer libxext-dev libxrender-dev libxtst-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
@@ -15,7 +15,8 @@ RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
 # the netbeans image
 RUN apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
 
-RUN wget http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz -q && \
+# Eclipse 4.2 - last version to support "CarrotGarden OSGi plugins"
+RUN wget http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/juno/SR2/eclipse-java-juno-SR2-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz -q && \
     echo 'Installing eclipse' && \
     tar -xf /tmp/eclipse.tar.gz -C /opt && \
     rm /tmp/eclipse.tar.gz
@@ -31,7 +32,13 @@ RUN chmod +x /usr/local/bin/eclipse && \
     chown developer:developer -R /home/developer && \
     chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
 
+# push eclipse plugins
+RUN mkdir -p /home/developer/.eclipse/org.eclipse.platform_4.2.0_1473617060
+
+ADD hi.txt /home/developer/.eclipse/org.eclipse.platform_4.2.0_1473617060
+
 USER developer
 ENV HOME /home/developer
 WORKDIR /home/developer
 CMD /usr/local/bin/eclipse
+#CMD bash
