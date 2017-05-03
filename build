@@ -1,2 +1,2 @@
 echo 'This will take a lot of time...'
-docker build -t mvberg/eclipse:v4.2.2 .
+docker build -t mvberg/eclipse:4.2.2 .
