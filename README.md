@@ -35,55 +35,49 @@ host.
 ## Windows
 
 Install xming for X11
+configure xming: https://github.com/moby/moby/issues/8710#issuecomment-135109677
 
-https://github.com/moby/moby/issues/8710#issuecomment-135109677
+### Set local ip address and run batch
 
-### OSX
+```sh
+SET ip=your_local_ip
+docker-windows.bat
+```
 
+## OSX
+
+install XQuartz (https://www.xquartz.org/)
 use socat to forward X11
 
-```
+```sh
 brew install socat
 socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
 ```
 
-## Set $DISPLAY to your local IP
-
-```
-SET $DISPLAY=10.222.4.184:0
+```sh
+./eclipse-osx
 ```
 
-Running Example:
+Example:
 
 ```sh
 mkdir -p .eclipse-docker # location for persistent storage
+ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
 docker run -ti --rm \
-           -e DISPLAY=$DISPLAY \ # use IP if this fails, eg 10.222.4.184:0
+           -e DISPLAY=$ip:0 \ # use IP if this fails, eg 10.222.4.184:0
            -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v `pwd`/.eclipse-docker:/home/developer \ # eclipse plugin metadata
-           -v `pwd`/git:/home/developer/git \ # git repos
-           -v `pwd`/.m2:/home/.m2 # maven repo and user settings
+           -v ~/.eclipse-docker/workspace:/home/developer/workspace \ # eclipse workspaces
+           -v ~/git:/home/developer/git \ # git repos
+           -v ~/.m2:/home/developer/.m2 \ # maven repo and user settings
            mvberg/eclipse:v4.2.2
 ```
 
-## Windows paths need to be absolute
+## Linux
 
-```sh
-docker run -ti --rm -e DISPLAY=10.222.4.184:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v c:/Users/mvber/.eclipse-docker:/home/developer -v c:/Users/mvber/git:/home/developer/git mvberg/eclipse:v4.2.2
-```
+Tested on Ubuntu Desktop 16.04
 
 
-## Copy Maven User Settings
-
-On your local machine
-
-```
-~/eclipse-docker/.m2/settings.xml
-```
 
 ## Help! I started the container but I don't see the Eclipse screen
 
-You might have an issue with the X11 socket permissions since the default user
-used by the base image has an user and group ids set to `1000`, in that case
-you can run either create your own base image with the appropriate ids or run
-`xhost +` on your machine and try again.
+https://github.com/fgrehm/docker-eclipse/issues/5
