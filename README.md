@@ -13,7 +13,7 @@ Eclipse v4.2.2 with Java 7 and "carrot garden" OSGi plugins in a Docker containe
 ## Windows
 
 * Install Xming for X11 (https://sourceforge.net/projects/xming/)
-* Configure xming: https://github.com/moby/moby/issues/8710#issuecomment-135109677
+* Launch by double clicking [config.xlaunch](config.xlaunch) or [see here for manual XLaunch setup](https://github.com/moby/moby/issues/8710#issuecomment-135109677)
 
 ### Set local ip address and run batch
 
