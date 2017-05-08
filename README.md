@@ -60,8 +60,12 @@ Tested on Ubuntu Desktop 16.04
 ./eclipse-linux
 ```
 
+## Java 2d
+
+You must run with `-Dsun.java2d.pmoffscreen=false` to get usable UI performance when launching AWT/Java2d apps from Eclipse.
+
 ## Help! I started the container but I don't see the Eclipse screen
 
 `xhost +` allow connections from all hosts
- 
+
 https://github.com/fgrehm/docker-eclipse/issues/5
