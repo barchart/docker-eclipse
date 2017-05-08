@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Fabio Rehm "mike@barchart.com"
+MAINTAINER Mike "mike@barchart.com"
 
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
     apt-get update && apt-get install -y software-properties-common && \
@@ -45,4 +45,5 @@ RUN chmod -R 777 /home/developer
 USER developer
 ENV HOME /home/developer
 WORKDIR /home/developer
+
 CMD /usr/local/bin/eclipse
