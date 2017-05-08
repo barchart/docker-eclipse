@@ -2,6 +2,8 @@
 
 ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
 
+mkdir -p .eclipse-docker
+
 docker run -ti --rm \
            --cpus=0.000 \
            -e DISPLAY=$ip:0 \
