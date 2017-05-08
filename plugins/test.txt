@@ -1,0 +1,1 @@
+we could just copy locally but instead fetching from S3

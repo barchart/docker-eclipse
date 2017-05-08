@@ -4,4 +4,5 @@
 if [ -d /home/developer/.eclipse ]; then
   sudo chown developer:developer /home/developer/.eclipse
 fi
+
 exec /opt/eclipse/eclipse
