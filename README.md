@@ -27,7 +27,7 @@ docker-windows.bat
 Open "Docker Quickstart Terminal"
 
 ```sh
-DISPLAY=your_local_ip #IP of Xming server
+DISPLAY=your_local_ip:0 #IP and display number of Xming server
 ./eclipse-linux
 ```
 
