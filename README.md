@@ -69,7 +69,7 @@ Tested on Ubuntu Desktop 16.04 and Fedora Workstation 25
 ./eclipse-linux
 ```
 
-### Java 2d and performance
+# Java 2d and performance
 
 You must run with `-Dsun.java2d.pmoffscreen=false` to get usable UI performance when launching AWT/Java2d apps from Eclipse.
 
