@@ -62,4 +62,6 @@ Tested on Ubuntu Desktop 16.04
 
 ## Help! I started the container but I don't see the Eclipse screen
 
+`xhost +` allow connections from all hosts
+ 
 https://github.com/fgrehm/docker-eclipse/issues/5
