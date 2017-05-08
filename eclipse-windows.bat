@@ -1,7 +1,15 @@
 @echo off
 
-echo Local IP for X11 display: %ip%
+IF "%ip%"=="" goto ERR
 
+goto RUN
+
+:ERR
+echo Please set "ip" enviorment variable to your local IP address
+exit /B
+
+:RUN
+echo Local IP for X11 display: %ip%
 docker run -ti --rm -e DISPLAY=%ip%:0 ^
     -v /tmp/.X11-unix:/tmp/.X11-unix ^
     -v %HOME%/.eclipse-docker:/home/developer ^

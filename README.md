@@ -12,7 +12,7 @@ Eclipse v4.2.2 with Java 7 and "carrot garden" OSGi plugins in a Docker containe
 
 ## Windows
 
-* Install xming for X11 (https://sourceforge.net/projects/xming/)
+* Install Xming for X11 (https://sourceforge.net/projects/xming/)
 * Configure xming: https://github.com/moby/moby/issues/8710#issuecomment-135109677
 
 ### Set local ip address and run batch
@@ -20,6 +20,15 @@ Eclipse v4.2.2 with Java 7 and "carrot garden" OSGi plugins in a Docker containe
 ```sh
 SET ip=your_local_ip
 docker-windows.bat
+```
+
+### Using docker-machine on Windows
+
+Open "Docker Quickstart Terminal"
+
+```sh
+DISPLAY=your_local_ip #IP of Xming server
+./eclipse-linux
 ```
 
 ## OSX
