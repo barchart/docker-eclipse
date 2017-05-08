@@ -31,6 +31,9 @@ RUN mkdir -p /home/developer/.eclipse/org.eclipse.platform_4.2.0_1473617060 && \
    wget http://barchart-jwrapper-jvm.s3.amazonaws.com/plugins.zip -O plugins.zip && \
    unzip plugins.zip -d /home/developer/.eclipse/org.eclipse.platform_4.2.0_1473617060
 
+# custom startup (more memory)
+ADD eclipse.ini /opt/eclipse
+
 RUN chmod +x /usr/local/bin/eclipse && \
     mkdir -p /home/developer && \
     echo "developer:x:1000:1000:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
