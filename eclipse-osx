@@ -12,4 +12,4 @@ docker run -ti --rm \
            -v ~/git:/home/developer/git \
            -v ~/.m2:/home/developer/.m2 \
            -v ~/.ssh:/home/developer/.ssh \
-           mvberg/eclipse:v4.2.2
+           barchart/eclipse:v4.2.2

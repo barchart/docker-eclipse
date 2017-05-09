@@ -16,4 +16,4 @@ docker run -ti --rm -e DISPLAY=%ip%:0 ^
     -v %HOME%/git:/home/developer/git ^
     -v %HOME%/.ssh:/home/developer/.ssh ^
     -v %HOME%/.m2:/home/developer/.m2 ^
-    mvberg/eclipse:v4.2.2
+    barchart/eclipse:v4.2.2

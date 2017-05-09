@@ -58,7 +58,7 @@ docker run -ti --rm \
            -v ~/.eclipse-docker/workspace:/home/developer/workspace \ # eclipse workspaces
            -v ~/git:/home/developer/git \ # git repos
            -v ~/.m2:/home/developer/.m2 \ # maven repo and user settings
-           mvberg/eclipse:v4.2.2
+           barchart/eclipse:v4.2.2
 ```
 
 ## Linux

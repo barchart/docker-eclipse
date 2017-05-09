@@ -1,2 +1,2 @@
 echo 'Building...'
-docker build -t mvberg/eclipse:v4.2.2 .
+docker build -t barchart/eclipse:v4.2.2 .
