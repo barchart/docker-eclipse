@@ -78,3 +78,8 @@ You must run with `-Dsun.java2d.pmoffscreen=false` to get usable UI performance 
 `xhost +` allow connections from all hosts
 
 https://github.com/fgrehm/docker-eclipse/issues/5
+
+## Notes
+
+* Forked from: https://github.com/fgrehm/docker-eclipse
+* More X11 and Docker from: https://blog.jessfraz.com/post/docker-containers-on-the-desktop/
