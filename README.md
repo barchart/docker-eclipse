@@ -2,7 +2,7 @@
 
 Eclipse v4.2.2 with Java 7 and "carrot garden" OSGi plugins in a Docker container
 
-![Alt text](docker-eclipse-osx.png "Docker Eclipse OSX")
+![Alt text](docker-eclipse-osxx.png "Docker Eclipse OSX")
 
 # Requirements
 
