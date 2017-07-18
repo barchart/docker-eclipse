@@ -2,6 +2,8 @@
 
 Eclipse v4.2.2 with Java 7 and "carrot garden" OSGi plugins in a Docker container
 
+![Alt text](docker-eclipse-osx.png "Docker Eclipse OSX")
+
 # Requirements
 
 * Docker 1.2+ (should work fine on 1.0+ but I haven't tried)
@@ -19,7 +21,7 @@ Eclipse v4.2.2 with Java 7 and "carrot garden" OSGi plugins in a Docker containe
 
 ```sh
 SET ip=your_local_ip
-docker-windows.bat
+eclipse-windows.bat
 ```
 
 ### Using docker-machine on Windows
